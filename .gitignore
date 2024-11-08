@@ -122,5 +122,5 @@ cython_debug/
 
 # Output directories
 output_test/*
-data/audio/*
+data/*
 
