@@ -2,36 +2,35 @@
 title CNN + LSTM Architecture
 
 skinparam rectangle {
-  BackgroundColor LightBlue
-  BorderColor Black
-  FontSize 12
-  RoundCorner 5
+    BackgroundColor LightBlue
+    BorderColor Black
+    FontSize 10
+    RoundCorner 5
 }
 
 skinparam arrow {
-  Color Black
-  Thickness 2
+    Color Black
+    Thickness 1
 }
 
-rectangle "Spectrogram Input" as Input
-rectangle "Conv2D + ReLU + Batch Norm" as Conv1
-rectangle "Max-Pooling" as Pool1
-rectangle "Conv2D + ReLU + Batch Norm" as Conv2
-rectangle "Max-Pooling" as Pool2
-rectangle "Feature Reshaping for LSTM" as Reshape
-rectangle "LSTM Layer 1" as LSTM1
-rectangle "LSTM Layer 2" as LSTM2
-rectangle "Fully Connected Layer" as FC
-rectangle "Class Predictions" as Output
+rectangle "Spectrogram\nInput" as Input
+rectangle "Conv1:\nConv2D + ReLU" as Conv1
+rectangle "Pool1:\nMax-Pooling" as Pool1
+rectangle "Conv2:\nConv2D + ReLU" as Conv2
+rectangle "Pool2:\nMax-Pooling" as Pool2
+rectangle "Reshape:\nFor LSTM" as Reshape
+rectangle "LSTM1:\nTemporal Modeling" as LSTM1
+rectangle "LSTM2:\nSeq. Dependencies" as LSTM2
+rectangle "FC:\nFully Connected" as FC
+rectangle "Output:\nClass Predictions" as Output
 
 Input --> Conv1 : Feature Extraction
 Conv1 --> Pool1 : Spatial Reduction
-Pool1 --> Conv2 : Deeper Feature Extraction
+Pool1 --> Conv2 : Deeper Features
 Conv2 --> Pool2 : Spatial Reduction
-Pool2 --> Reshape : Prepare for Sequence
+Pool2 --> Reshape : Prepare Sequence
 Reshape --> LSTM1 : Temporal Modeling
-LSTM1 --> LSTM2 : Sequential Dependencies
+LSTM1 --> LSTM2 : Sequential Modeling
 LSTM2 --> FC : Classification
 FC --> Output : Predictions
-
 @enduml
