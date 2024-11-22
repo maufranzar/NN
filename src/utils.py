@@ -128,30 +128,29 @@ def freq_to_note_name(frequency, note_frequencies, tolerance_cents=50):
     return notes[within_tolerance][closest_idx]
 
 
-def plot_mfcc(signal, sample_rate, save_path=None, n_mfcc=13, fmax=8000):
+def plot_chromagram(signal, sample_rate, save_path=None, fmax=8000):
     """
-    Extrae y grafica los MFCCs de una señal de audio, limitando la frecuencia máxima analizada.
-    
+    Genera y grafica el chromagram de una señal de audio.
+
     Parámetros:
     - signal: La señal de audio a analizar.
     - sample_rate: La tasa de muestreo de la señal.
-    - save_path: Ruta para guardar el gráfico de MFCCs. Si es None, solo se muestra.
-    - n_mfcc: Número de coeficientes MFCC a extraer.
+    - save_path: Ruta para guardar el chromagram. Si es None, solo se muestra.
     - fmax: Frecuencia máxima a considerar en el análisis (en Hz).
     """
     try:
-        mfccs = librosa.feature.mfcc(y=signal, sr=sample_rate, n_mfcc=n_mfcc, fmax=fmax)
+        chromagram = librosa.feature.chroma_stft(y=signal, sr=sample_rate, tuning=0, norm=2)
         plt.figure(figsize=(10, 4))
-        librosa.display.specshow(mfccs, x_axis='time', sr=sample_rate)
+        librosa.display.specshow(chromagram, x_axis='time', y_axis='chroma', sr=sample_rate, cmap='coolwarm')
         plt.colorbar()
-        plt.title('MFCC')
+        plt.title('Chromagram')
         plt.tight_layout()
 
         if save_path:
             plt.savefig(save_path)
-            print(f'MFCC guardado en {save_path}')
+            print(f'Chromagram guardado en {save_path}')
         else:
             plt.show()
         plt.close()
     except Exception as e:
-        print(f"Error al generar los MFCCs: {e}")
+        print(f"Error al generar el chromagram: {e}")

@@ -31,3 +31,19 @@ Este proyecto se centra en la generación, análisis y procesamiento de señales
 - Python 3.12 o superior
 - Bibliotecas: `numpy`, `matplotlib`, `seaborn`, `scipy`, `librosa`, `pytest`
 - PyTorch (si se va a integrar con redes neuronales)
+
+# Pasos:
+
+conda env create -f environment.yml
+conda activate audio_project
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+conda install pytorch torchvision torchaudio cpuonly -c pytorch
+
+conda install -c conda-forge librosa
+conda install -c anaconda graphviz
+pip install pydot
+ipython kernel install --user --name=audio_project
+
