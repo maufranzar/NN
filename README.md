@@ -47,3 +47,12 @@ conda install -c anaconda graphviz
 pip install pydot
 ipython kernel install --user --name=audio_project
 
+---
+# Instalar PyTorch (ajusta el comando según tu sistema y si usarás CUDA o no)
+conda install pytorch torchvision torchaudio cpuonly -c pytorch
+
+# Instalar torchviz y graphviz
+pip install torchviz
+conda install -c anaconda graphviz
+
+
