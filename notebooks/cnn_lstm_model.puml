@@ -1,0 +1,37 @@
+@startuml cnn_lstm_model
+title CNN + LSTM Architecture
+
+skinparam rectangle {
+  BackgroundColor LightBlue
+  BorderColor Black
+  FontSize 12
+  RoundCorner 5
+}
+
+skinparam arrow {
+  Color Black
+  Thickness 2
+}
+
+rectangle "Spectrogram Input" as Input
+rectangle "Conv2D + ReLU + Batch Norm" as Conv1
+rectangle "Max-Pooling" as Pool1
+rectangle "Conv2D + ReLU + Batch Norm" as Conv2
+rectangle "Max-Pooling" as Pool2
+rectangle "Feature Reshaping for LSTM" as Reshape
+rectangle "LSTM Layer 1" as LSTM1
+rectangle "LSTM Layer 2" as LSTM2
+rectangle "Fully Connected Layer" as FC
+rectangle "Class Predictions" as Output
+
+Input --> Conv1 : Feature Extraction
+Conv1 --> Pool1 : Spatial Reduction
+Pool1 --> Conv2 : Deeper Feature Extraction
+Conv2 --> Pool2 : Spatial Reduction
+Pool2 --> Reshape : Prepare for Sequence
+Reshape --> LSTM1 : Temporal Modeling
+LSTM1 --> LSTM2 : Sequential Dependencies
+LSTM2 --> FC : Classification
+FC --> Output : Predictions
+
+@enduml
