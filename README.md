@@ -112,5 +112,4 @@ Este proyecto se encuentra bajo la licencia MIT. Para más detalles, consulta el
 
 ## **Contacto**
 Mauricio Franco  
-[Tu Sitio Web](http://mauranzar.com)  
-Correo: mauricio@example.com
+http://mauranzar.com
